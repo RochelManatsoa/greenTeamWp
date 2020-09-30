@@ -3,11 +3,7 @@
 /**
  * Email text field.
  *
- * @package    WPForms
- * @author     WPForms
- * @since      1.0.0
- * @license    GPL-2.0+
- * @copyright  Copyright (c) 2016, WPForms LLC
+ * @since 1.0.0
  */
 class WPForms_Field_Email extends WPForms_Field {
 
@@ -378,7 +374,7 @@ class WPForms_Field_Email extends WPForms_Field {
 	}
 
 	/**
-	 * Formats and sanitizes field.
+	 * Format and sanitize field.
 	 *
 	 * @since 1.3.0
 	 * @param int   $field_id     Field ID.
@@ -406,14 +402,17 @@ class WPForms_Field_Email extends WPForms_Field {
 	}
 
 	/**
-	 * Validates field on form submit.
+	 * Validate field on form submit.
+	 *
+	 * @since 1.0.0
 	 *
 	 * @param int   $field_id     Field ID.
 	 * @param mixed $field_submit Field value that was submitted.
 	 * @param array $form_data    Form data and settings.
 	 */
 	public function validate( $field_id, $field_submit, $form_data ) {
-		$form_id = $form_data['id'];
+
+		$form_id = (int) $form_data['id'];
 
 		parent::validate( $field_id, $field_submit, $form_data );
 
@@ -429,7 +428,6 @@ class WPForms_Field_Email extends WPForms_Field {
 			wpforms()->process->errors[ $form_id ][ $field_id ]['secondary'] = esc_html__( 'The provided emails do not match.', 'wpforms-lite' );
 		}
 	}
-
 }
 
 new WPForms_Field_Email();
